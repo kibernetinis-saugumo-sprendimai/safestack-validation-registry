@@ -1,0 +1,3 @@
+SafeStack Root of Trust:
+https://github.com/safestack-labs/safestack-root-of-trust
+Version: 1.0.0

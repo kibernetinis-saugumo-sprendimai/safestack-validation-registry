@@ -1,0 +1,3 @@
+SafeStack Technical Canon:
+https://github.com/safestack-labs/safestack-technical-canon
+Version: 1.0.0
