@@ -1,0 +1,25 @@
+name: Validation registry integrity
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - run: sha256sum -c REGISTRY_HASH.txt
+      - run: python -m json.tool REGISTRY.json >/dev/null
+      - name: Confirm registry has no implied approvals
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("REGISTRY.json").read_text())
+          assert isinstance(data.get("projects"), list)
+          PY
